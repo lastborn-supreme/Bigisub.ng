@@ -1,178 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bigisub.ng - Login</title>
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Your Account</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-        body {
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #0b0c10;
+      color: #ffffff;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .login-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            max-width: 400px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
+    /* --- Stylish Background Effect --- */
+    body::before,
+    body::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: 0;
+      opacity: 0.45;
+    }
 
-        .brand-logo {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px auto;
-            color: #fff;
-            font-size: 24px;
-            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
-        }
+    /* Top-left glowing ambient light */
+    body::before {
+      width: 400px;
+      height: 400px;
+      background: #3b82f6; /* Accent Blue */
+      top: -10%;
+      left: -10%;
+    }
 
-        .login-card h2 {
-            color: #ffffff;
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
+    /* Bottom-right glowing ambient light */
+    body::after {
+      width: 450px;
+      height: 450px;
+      background: #8b5cf6; /* Accent Purple */
+      bottom: -10%;
+      right: -10%;
+    }
 
-        .login-card p {
-            font-size: 13px;
-            color: #a0aec0;
-            margin-bottom: 30px;
-        }
+    /* Card Container */
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 440px;
+      background-color: #16171b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+    }
 
-        .input-group {
-            position: relative;
-            margin-bottom: 20px;
-            text-align: left;
-        }
+    .title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
 
-        .input-group i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #a0aec0;
-            font-size: 16px;
-            transition: 0.3s;
-        }
+    /* Form Elements */
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
 
-        .input-group input {
-            width: 100%;
-            padding: 14px 14px 14px 45px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            background: rgba(0, 0, 0, 0.2);
-            color: #ffffff;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
+    .row {
+      display: flex;
+      gap: 1rem;
+    }
 
-        .input-group input::placeholder {
-            color: #718096;
-        }
+    .row .field-group {
+      flex: 1;
+    }
 
-        .input-group input:focus {
-            border-color: #00c6ff;
-            background: rgba(0, 0, 0, 0.35);
-            box-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
-        }
+    .field-group {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .input-group input:focus + i {
-            color: #00c6ff;
-        }
+    .input-field {
+      width: 100%;
+      background-color: #1c1e24;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      color: #ffffff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
 
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-            box-shadow: 0 5px 20px rgba(0, 114, 255, 0.4);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
+    .input-field::placeholder {
+      color: #8e95a5;
+    }
 
-        .login-btn:active {
-            transform: scale(0.98);
-        }
+    .input-field:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
 
-        .footer-links {
-            margin-top: 25px;
-            font-size: 13px;
-            color: #a0aec0;
-        }
+    /* Password Input with Eye Icon */
+    .password-wrapper {
+      position: relative;
+    }
 
-        .footer-links a {
-            color: #00c6ff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
+    .password-wrapper .input-field {
+      padding-right: 3rem;
+    }
 
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    .toggle-password {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #8e95a5;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+    }
+
+    .toggle-password:hover {
+      color: #ffffff;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      background-color: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #1d4ed8;
+    }
+
+    .btn-submit:active {
+      transform: scale(0.99);
+    }
+
+    /* Footer Text */
+    .footer-text {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: #9ca3af;
+    }
+
+    .footer-text a {
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 0.25rem;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive adjustment for small devices */
+    @media (max-width: 480px) {
+      .row {
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="login-card">
-        <div class="brand-logo">
-            <i class="fa-solid fa-bolt"></i>
+  <div class="card">
+    <h1 class="title">Create your account</h1>
+    
+    <form class="form" onsubmit="event.preventDefault();">
+      <!-- First & Last Name Row -->
+      <div class="row">
+        <div class="field-group">
+          <input type="text" class="input-field" placeholder="First name" required />
         </div>
-        <h2>Bigisub.ng</h2>
-        <p>Log in to manage your account</p>
-        
-        <form action="#" method="POST">
-            <div class="input-group">
-                <input type="text" id="username" placeholder="Username or Phone Number" required>
-                <i class="fa-solid fa-user"></i>
-            </div>
-            
-            <div class="input-group">
-                <input type="password" id="password" placeholder="Password" required>
-                <i class="fa-solid fa-lock"></i>
-            </div>
-            
-            <button type="submit" class="login-btn">Sign In</button>
-        </form>
+        <div class="field-group">
+          <input type="text" class="input-field" placeholder="Last name" required />
+        </div>
+      </div>
 
-        <div class="footer-links">
-            <a href="#">Forgot password?</a>
-            <span style="margin: 0 8px; color: #4a5568;">•</span>
-            <a href="#">Create account</a>
-        </div>
-    </div>
+      <!-- Email Input -->
+      <div class="field-group">
+        <input type="email" class="input-field" placeholder="Email address" required />
+      </div>
+
+      <!-- Password Input -->
+      <div class="field-group password-wrapper">
+        <input type="password" id="password" class="input-field" placeholder="Password" required />
+        <button type="button" class="toggle-password" onclick="togglePasswordVisibility()" aria-label="Toggle password visibility">
+          <!-- Eye Icon SVG -->
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn-submit">Create account</button>
+    </form>
+
+    <!-- Footer -->
+    <p class="footer-text">
+      Already have an account? <a href="#">Sign in</a>
+    </p>
+  </div>
+
+  <script>
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('password');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+    }
+  </script>
 
 </body>
 </html>
