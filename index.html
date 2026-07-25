@@ -1,163 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bigisub.ng - Dashboard</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auth UI - Bunnyband Style</title>
+  <style>
+    /* Global Reset & Dark Theme Base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #0d0d0e;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Outer Container / Card Style */
+    .auth-card {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 20px;
+      padding: 36px 28px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    .auth-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    /* Form Layouts */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* Custom Input Controls */
+    .input-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .input-field {
+      width: 100%;
+      background-color: #0f0f11;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      padding: 16px;
+      color: #ffffff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .input-field::placeholder {
+      color: #71717a;
+    }
+
+    .input-field:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    /* Password Toggle Icon */
+    .toggle-password {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #71717a;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .toggle-password:hover {
+      color: #ffffff;
+    }
+
+    /* Buttons */
+    .btn-submit {
+      width: 100%;
+      margin-top: 8px;
+      padding: 16px;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.1s ease, filter 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-submit:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    /* Dynamic Switch Link */
+    .auth-footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 0.9rem;
+      color: #a1a1aa;
+    }
+
+    .auth-link {
+      color: #3b82f6;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: text-decoration 0.2s ease;
+    }
+
+    .auth-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Animation utility */
+    .fade-in {
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body>
 
-  <!-- Navigation Bar -->
-  <nav class="bg-indigo-900 text-white px-4 py-3 flex justify-between items-center shadow-md">
-    <div class="flex items-center space-x-2">
-      <span class="text-xl font-bold tracking-wide">Bigisub<span class="text-indigo-400">.ng</span></span>
-    </div>
-    <div class="flex items-center space-x-4">
-      <button class="relative text-gray-300 hover:text-white">
-        <i class="fa-solid fa-bell text-lg"></i>
-        <span class="absolute -top-1 -right-1 bg-red-500 text-xs text-white rounded-full h-4 w-4 flex items-center justify-center">2</span>
-      </button>
-      <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center font-bold">U</div>
-        <span class="hidden md:inline font-medium text-sm">User</span>
-      </div>
-    </div>
-  </nav>
+  <div class="auth-card fade-in">
+    <h2 class="auth-title" id="form-title">Create your account</h2>
 
-  <!-- Main Container -->
-  <main class="max-w-4xl mx-auto p-4 space-y-6">
-
-    <!-- Wallet Summary Card -->
-    <div class="bg-gradient-to-r from-indigo-900 to-indigo-700 rounded-2xl p-6 text-white shadow-lg">
-      <div class="flex justify-between items-start">
-        <div>
-          <p class="text-indigo-200 text-sm">Wallet Balance</p>
-          <h2 class="text-3xl font-extrabold mt-1">₦ 15,450.00</h2>
-        </div>
-        <button class="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-4 py-2 rounded-xl text-sm transition shadow flex items-center gap-2">
-          <i class="fa-solid fa-plus"></i> Fund Wallet
-        </button>
-      </div>
-
-      <!-- Dedicated Bank Accounts Section -->
-      <div class="mt-6 pt-4 border-t border-indigo-600/50">
-        <p class="text-xs text-indigo-200 mb-2 font-medium">AUTOMATED BANK ACCOUNTS (Auto-Funding)</p>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
-          <div class="bg-indigo-800/60 p-2 rounded-lg">
-            <span class="text-indigo-300 block text-[10px]">WEMA BANK</span>
-            <span class="font-bold tracking-wide">7820193840</span>
+    <form id="auth-form" onsubmit="event.preventDefault();">
+      <div class="form-group">
+        <!-- Names grid (Hidden dynamically during Sign In) -->
+        <div class="grid-2" id="name-fields">
+          <div class="input-wrapper">
+            <input type="text" class="input-field" placeholder="First name" required />
           </div>
-          <div class="bg-indigo-800/60 p-2 rounded-lg">
-            <span class="text-indigo-300 block text-[10px]">MONIEPOINT</span>
-            <span class="font-bold tracking-wide">6401928374</span>
-          </div>
-          <div class="bg-indigo-800/60 p-2 rounded-lg col-span-2 md:col-span-1">
-            <span class="text-indigo-300 block text-[10px]">STERLING BANK</span>
-            <span class="font-bold tracking-wide">9012837461</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quick Services Grid -->
-    <div>
-      <h3 class="text-gray-800 font-bold text-lg mb-3">Quick Services</h3>
-      <div class="grid grid-cols-3 md:grid-cols-4 gap-3">
-        
-        <a href="#" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition text-center flex flex-col items-center justify-center gap-2 border border-gray-100">
-          <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
-            <i class="fa-solid fa-wifi"></i>
-          </div>
-          <span class="text-xs font-semibold text-gray-700">Buy Data</span>
-        </a>
-
-        <a href="#" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition text-center flex flex-col items-center justify-center gap-2 border border-gray-100">
-          <div class="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xl">
-            <i class="fa-solid fa-phone"></i>
-          </div>
-          <span class="text-xs font-semibold text-gray-700">Buy Airtime</span>
-        </a>
-
-        <a href="#" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition text-center flex flex-col items-center justify-center gap-2 border border-gray-100">
-          <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xl">
-            <i class="fa-solid fa-tv"></i>
-          </div>
-          <span class="text-xs font-semibold text-gray-700">Cable TV</span>
-        </a>
-
-        <a href="#" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition text-center flex flex-col items-center justify-center gap-2 border border-gray-100">
-          <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
-            <i class="fa-solid fa-bolt"></i>
-          </div>
-          <span class="text-xs font-semibold text-gray-700">Electricity</span>
-        </a>
-
-        <a href="#" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition text-center flex flex-col items-center justify-center gap-2 border border-gray-100">
-          <div class="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xl">
-            <i class="fa-solid fa-graduation-cap"></i>
-          </div>
-          <span class="text-xs font-semibold text-gray-700">Exam Pins</span>
-        </a>
-
-        <a href="#" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition text-center flex flex-col items-center justify-center gap-2 border border-gray-100">
-          <div class="w-12 h-12 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xl">
-            <i class="fa-solid fa-money-bill-transfer"></i>
-          </div>
-          <span class="text-xs font-semibold text-gray-700">Airtime Cash</span>
-        </a>
-
-      </div>
-    </div>
-
-    <!-- Recent Transactions Table -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="text-gray-800 font-bold text-lg">Recent Transactions</h3>
-        <a href="#" class="text-xs font-semibold text-indigo-600 hover:underline">View All</a>
-      </div>
-
-      <div class="space-y-3">
-        <!-- Transaction Item 1 -->
-        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-bold">
-              <i class="fa-solid fa-wifi"></i>
-            </div>
-            <div>
-              <p class="text-sm font-bold text-gray-800">MTN 2.0 GB SME</p>
-              <p class="text-xs text-gray-500">08123456789 • Today, 2:15 PM</p>
-            </div>
-          </div>
-          <div class="text-right">
-            <p class="text-sm font-bold text-gray-800">₦ 520.00</p>
-            <span class="inline-block bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Successful</span>
+          <div class="input-wrapper">
+            <input type="text" class="input-field" placeholder="Last name" required />
           </div>
         </div>
 
-        <!-- Transaction Item 2 -->
-        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm font-bold">
-              <i class="fa-solid fa-wallet"></i>
-            </div>
-            <div>
-              <p class="text-sm font-bold text-gray-800">Wallet Funding</p>
-              <p class="text-xs text-gray-500">Monnify Transfer • Yesterday</p>
-            </div>
-          </div>
-          <div class="text-right">
-            <p class="text-sm font-bold text-emerald-600">+₦ 5,000.00</p>
-            <span class="inline-block bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Successful</span>
-          </div>
+        <!-- Email -->
+        <div class="input-wrapper">
+          <input type="email" class="input-field" placeholder="Email address" required />
         </div>
+
+        <!-- Password -->
+        <div class="input-wrapper">
+          <input type="password" id="password-field" class="input-field" placeholder="Password" required />
+          <button type="button" class="toggle-password" id="toggle-pwd-btn" aria-label="Toggle password view">
+            <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-submit" id="submit-btn">Create account</button>
       </div>
+    </form>
+
+    <!-- Switch Mode Link -->
+    <div class="auth-footer" id="auth-footer">
+      Already have an account? <span class="auth-link" id="switch-mode-btn">Sign in</span>
     </div>
+  </div>
 
-  </main>
+  <script>
+    // State Tracker
+    let isSignUp = true;
 
+    // Element References
+    const formTitle = document.getElementById('form-title');
+    const nameFields = document.getElementById('name-fields');
+    const submitBtn = document.getElementById('submit-btn');
+    const authFooter = document.getElementById('auth-footer');
+    const switchModeBtn = document.getElementById('switch-mode-btn');
+    const passwordField = document.getElementById('password-field');
+    const togglePwdBtn = document.getElementById('toggle-pwd-btn');
+    const eyeIcon = document.getElementById('eye-icon');
+
+    // Dynamic View Switcher (Sign Up <-> Sign In)
+    switchModeBtn.addEventListener('click', () => {
+      isSignUp = !isSignUp;
+
+      if (isSignUp) {
+        formTitle.textContent = 'Create your account';
+        nameFields.style.display = 'grid';
+        submitBtn.textContent = 'Create account';
+        authFooter.innerHTML = 'Already have an account? <span class="auth-link" id="switch-mode-btn">Sign in</span>';
+      } else {
+        formTitle.textContent = 'Welcome back';
+        nameFields.style.display = 'none';
+        submitBtn.textContent = 'Sign in';
+        authFooter.innerHTML = 'Don\'t have an account? <span class="auth-link" id="switch-mode-btn">Sign up</span>';
+      }
+
+      // Re-bind click event to newly created link DOM node
+      document.getElementById('switch-mode-btn').addEventListener('click', arguments.callee);
+    });
+
+    // Toggle Password Visibility
+    togglePwdBtn.addEventListener('click', () => {
+      const isPassword = passwordField.type === 'password';
+      passwordField.type = isPassword ? 'text' : 'password';
+
+      // Switch SVG icon design dynamically
+      if (isPassword) {
+        eyeIcon.innerHTML = `
+          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+          <line x1="1" y1="1" x2="23" y2="23"></line>
+        `;
+      } else {
+        eyeIcon.innerHTML = `
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        `;
+      }
+    });
+  </script>
 </body>
 </html>
