@@ -3,255 +3,161 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Your Account</title>
-  <style>
-    /* Reset & Base Styles */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #0b0c10;
-      color: #ffffff;
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* --- Stylish Background Effect --- */
-    body::before,
-    body::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      z-index: 0;
-      opacity: 0.45;
-    }
-
-    /* Top-left glowing ambient light */
-    body::before {
-      width: 400px;
-      height: 400px;
-      background: #3b82f6; /* Accent Blue */
-      top: -10%;
-      left: -10%;
-    }
-
-    /* Bottom-right glowing ambient light */
-    body::after {
-      width: 450px;
-      height: 450px;
-      background: #8b5cf6; /* Accent Purple */
-      bottom: -10%;
-      right: -10%;
-    }
-
-    /* Card Container */
-    .card {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 440px;
-      background-color: #16171b;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-    }
-
-    .title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #ffffff;
-      letter-spacing: -0.02em;
-    }
-
-    /* Form Elements */
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .row {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .row .field-group {
-      flex: 1;
-    }
-
-    .field-group {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .input-field {
-      width: 100%;
-      background-color: #1c1e24;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      color: #ffffff;
-      font-size: 1rem;
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .input-field::placeholder {
-      color: #8e95a5;
-    }
-
-    .input-field:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-    }
-
-    /* Password Input with Eye Icon */
-    .password-wrapper {
-      position: relative;
-    }
-
-    .password-wrapper .input-field {
-      padding-right: 3rem;
-    }
-
-    .toggle-password {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #8e95a5;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.25rem;
-    }
-
-    .toggle-password:hover {
-      color: #ffffff;
-    }
-
-    /* Submit Button */
-    .btn-submit {
-      width: 100%;
-      background-color: #2563eb;
-      color: #ffffff;
-      border: none;
-      border-radius: 12px;
-      padding: 1rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 0.5rem;
-      transition: background-color 0.2s ease, transform 0.1s ease;
-    }
-
-    .btn-submit:hover {
-      background-color: #1d4ed8;
-    }
-
-    .btn-submit:active {
-      transform: scale(0.99);
-    }
-
-    /* Footer Text */
-    .footer-text {
-      text-align: center;
-      margin-top: 1.5rem;
-      font-size: 0.95rem;
-      color: #9ca3af;
-    }
-
-    .footer-text a {
-      color: #3b82f6;
-      text-decoration: none;
-      font-weight: 500;
-      margin-left: 0.25rem;
-    }
-
-    .footer-text a:hover {
-      text-decoration: underline;
-    }
-
-    /* Responsive adjustment for small devices */
-    @media (max-width: 480px) {
-      .row {
-        flex-direction: column;
-        gap: 1.25rem;
-      }
-    }
-  </style>
+  <title>Bigisub.ng - Dashboard</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="bg-gray-100 font-sans">
 
-  <div class="card">
-    <h1 class="title">Create your account</h1>
-    
-    <form class="form" onsubmit="event.preventDefault();">
-      <!-- First & Last Name Row -->
-      <div class="row">
-        <div class="field-group">
-          <input type="text" class="input-field" placeholder="First name" required />
-        </div>
-        <div class="field-group">
-          <input type="text" class="input-field" placeholder="Last name" required />
-        </div>
+  <!-- Navigation Bar -->
+  <nav class="bg-indigo-900 text-white px-4 py-3 flex justify-between items-center shadow-md">
+    <div class="flex items-center space-x-2">
+      <span class="text-xl font-bold tracking-wide">Bigisub<span class="text-indigo-400">.ng</span></span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button class="relative text-gray-300 hover:text-white">
+        <i class="fa-solid fa-bell text-lg"></i>
+        <span class="absolute -top-1 -right-1 bg-red-500 text-xs text-white rounded-full h-4 w-4 flex items-center justify-center">2</span>
+      </button>
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center font-bold">U</div>
+        <span class="hidden md:inline font-medium text-sm">User</span>
       </div>
+    </div>
+  </nav>
 
-      <!-- Email Input -->
-      <div class="field-group">
-        <input type="email" class="input-field" placeholder="Email address" required />
-      </div>
+  <!-- Main Container -->
+  <main class="max-w-4xl mx-auto p-4 space-y-6">
 
-      <!-- Password Input -->
-      <div class="field-group password-wrapper">
-        <input type="password" id="password" class="input-field" placeholder="Password" required />
-        <button type="button" class="toggle-password" onclick="togglePasswordVisibility()" aria-label="Toggle password visibility">
-          <!-- Eye Icon SVG -->
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-          </svg>
+    <!-- Wallet Summary Card -->
+    <div class="bg-gradient-to-r from-indigo-900 to-indigo-700 rounded-2xl p-6 text-white shadow-lg">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-indigo-200 text-sm">Wallet Balance</p>
+          <h2 class="text-3xl font-extrabold mt-1">₦ 15,450.00</h2>
+        </div>
+        <button class="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-4 py-2 rounded-xl text-sm transition shadow flex items-center gap-2">
+          <i class="fa-solid fa-plus"></i> Fund Wallet
         </button>
       </div>
 
-      <!-- Submit Button -->
-      <button type="submit" class="btn-submit">Create account</button>
-    </form>
+      <!-- Dedicated Bank Accounts Section -->
+      <div class="mt-6 pt-4 border-t border-indigo-600/50">
+        <p class="text-xs text-indigo-200 mb-2 font-medium">AUTOMATED BANK ACCOUNTS (Auto-Funding)</p>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+          <div class="bg-indigo-800/60 p-2 rounded-lg">
+            <span class="text-indigo-300 block text-[10px]">WEMA BANK</span>
+            <span class="font-bold tracking-wide">7820193840</span>
+          </div>
+          <div class="bg-indigo-800/60 p-2 rounded-lg">
+            <span class="text-indigo-300 block text-[10px]">MONIEPOINT</span>
+            <span class="font-bold tracking-wide">6401928374</span>
+          </div>
+          <div class="bg-indigo-800/60 p-2 rounded-lg col-span-2 md:col-span-1">
+            <span class="text-indigo-300 block text-[10px]">STERLING BANK</span>
+            <span class="font-bold tracking-wide">9012837461</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!-- Footer -->
-    <p class="footer-text">
-      Already have an account? <a href="#">Sign in</a>
-    </p>
-  </div>
+    <!-- Quick Services Grid -->
+    <div>
+      <h3 class="text-gray-800 font-bold text-lg mb-3">Quick Services</h3>
+      <div class="grid grid-cols-3 md:grid-cols-4 gap-3">
+        
+        <a href="#" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition text-center flex flex-col items-center justify-center gap-2 border border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-wifi"></i>
+          </div>
+          <span class="text-xs font-semibold text-gray-700">Buy Data</span>
+        </a>
 
-  <script>
-    function togglePasswordVisibility() {
-      const passwordInput = document.getElementById('password');
-      if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-      } else {
-        passwordInput.type = 'password';
-      }
-    }
-  </script>
+        <a href="#" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition text-center flex flex-col items-center justify-center gap-2 border border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-phone"></i>
+          </div>
+          <span class="text-xs font-semibold text-gray-700">Buy Airtime</span>
+        </a>
+
+        <a href="#" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition text-center flex flex-col items-center justify-center gap-2 border border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-tv"></i>
+          </div>
+          <span class="text-xs font-semibold text-gray-700">Cable TV</span>
+        </a>
+
+        <a href="#" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition text-center flex flex-col items-center justify-center gap-2 border border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <span class="text-xs font-semibold text-gray-700">Electricity</span>
+        </a>
+
+        <a href="#" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition text-center flex flex-col items-center justify-center gap-2 border border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <span class="text-xs font-semibold text-gray-700">Exam Pins</span>
+        </a>
+
+        <a href="#" class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition text-center flex flex-col items-center justify-center gap-2 border border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+          </div>
+          <span class="text-xs font-semibold text-gray-700">Airtime Cash</span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Recent Transactions Table -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-gray-800 font-bold text-lg">Recent Transactions</h3>
+        <a href="#" class="text-xs font-semibold text-indigo-600 hover:underline">View All</a>
+      </div>
+
+      <div class="space-y-3">
+        <!-- Transaction Item 1 -->
+        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-bold">
+              <i class="fa-solid fa-wifi"></i>
+            </div>
+            <div>
+              <p class="text-sm font-bold text-gray-800">MTN 2.0 GB SME</p>
+              <p class="text-xs text-gray-500">08123456789 • Today, 2:15 PM</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm font-bold text-gray-800">₦ 520.00</p>
+            <span class="inline-block bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Successful</span>
+          </div>
+        </div>
+
+        <!-- Transaction Item 2 -->
+        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm font-bold">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
+            <div>
+              <p class="text-sm font-bold text-gray-800">Wallet Funding</p>
+              <p class="text-xs text-gray-500">Monnify Transfer • Yesterday</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm font-bold text-emerald-600">+₦ 5,000.00</p>
+            <span class="inline-block bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">Successful</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
 
 </body>
 </html>
