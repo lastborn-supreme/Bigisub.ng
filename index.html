@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bigisub.ng | Login</title>
   <style>
-    /* CSS Variables for Easy Customization */
+    /* CSS Variables */
     :root {
       --bg-gradient: radial-gradient(circle at top, #1a2332 0%, #0a0d14 100%);
       --card-bg: rgba(22, 28, 39, 0.85);
@@ -272,11 +272,10 @@
       }
     });
 
-    // Dummy Submit Handler
+    // Redirect to Dashboard Page on Submit
     function handleLogin(event) {
-      event.preventDefault();
-      const username = document.getElementById('user-input').value;
-      alert(`Logging in user: ${username}`);
+      event.preventDefault(); // Prevents page refresh
+      window.location.href = "dashboard.html"; // Sends user to dashboard
     }
   </script>
 
