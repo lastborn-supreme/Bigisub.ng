@@ -3,9 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Auth UI - Bunnyband Style</title>
+  <title>Bigisub.ng | Login</title>
   <style>
-    /* Global Reset & Dark Theme Base */
+    /* CSS Variables for Easy Customization */
+    :root {
+      --bg-gradient: radial-gradient(circle at top, #1a2332 0%, #0a0d14 100%);
+      --card-bg: rgba(22, 28, 39, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --input-bg: #111622;
+      --input-border: #242e42;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-label: #cbd5e1;
+      --accent-green: #10b981;
+      --accent-green-hover: #059669;
+      --accent-blue: #38bdf8;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -14,8 +28,8 @@
     }
 
     body {
-      background-color: #0d0d0e;
-      color: #ffffff;
+      background: var(--bg-gradient);
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -23,67 +37,78 @@
       padding: 20px;
     }
 
-    /* Outer Container / Card Style */
+    /* Auth Card Container */
     .auth-card {
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
       border-radius: 20px;
-      padding: 36px 28px;
+      padding: 40px 32px;
       width: 100%;
-      max-width: 420px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-      transition: all 0.3s ease;
+      max-width: 400px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .auth-title {
-      font-size: 1.75rem;
-      font-weight: 700;
+    /* Header Section */
+    .auth-header {
       text-align: center;
-      margin-bottom: 28px;
-      letter-spacing: -0.02em;
+      margin-bottom: 32px;
     }
 
-    /* Form Layouts */
+    .brand-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .brand-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Form Styles */
     .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+      margin-bottom: 20px;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-label);
+      margin-bottom: 8px;
     }
 
-    /* Custom Input Controls */
     .input-wrapper {
       position: relative;
-      width: 100%;
     }
 
-    .input-field {
+    .form-input {
       width: 100%;
-      background-color: #0f0f11;
-      border: 1px solid #27272a;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
       border-radius: 12px;
-      padding: 16px;
-      color: #ffffff;
+      padding: 14px 16px;
+      color: var(--text-main);
       font-size: 0.95rem;
       outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: all 0.2s ease;
     }
 
-    .input-field::placeholder {
-      color: #71717a;
+    .form-input::placeholder {
+      color: #475569;
     }
 
-    .input-field:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    .form-input:focus {
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
     }
 
-    /* Password Toggle Icon */
+    /* Password Toggle Icon Button */
     .toggle-password {
       position: absolute;
       right: 14px;
@@ -91,7 +116,7 @@
       transform: translateY(-50%);
       background: none;
       border: none;
-      color: #71717a;
+      color: var(--text-muted);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -101,63 +126,63 @@
     }
 
     .toggle-password:hover {
-      color: #ffffff;
+      color: var(--text-main);
     }
 
-    /* Buttons */
+    /* Submit Button */
     .btn-submit {
       width: 100%;
+      padding: 15px;
       margin-top: 8px;
-      padding: 16px;
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      background: var(--accent-green);
       color: #ffffff;
       font-size: 1rem;
       font-weight: 600;
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      transition: transform 0.1s ease, filter 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
     }
 
     .btn-submit:hover {
-      filter: brightness(1.1);
-      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+      background: var(--accent-green-hover);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
     }
 
     .btn-submit:active {
       transform: scale(0.98);
     }
 
-    /* Dynamic Switch Link */
+    /* Footer Links */
     .auth-footer {
-      text-align: center;
       margin-top: 24px;
-      font-size: 0.9rem;
-      color: #a1a1aa;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-muted);
     }
 
     .auth-link {
-      color: #3b82f6;
-      font-weight: 600;
+      color: var(--text-muted);
       text-decoration: none;
-      cursor: pointer;
-      transition: text-decoration 0.2s ease;
+      transition: color 0.2s ease;
     }
 
     .auth-link:hover {
+      color: var(--accent-blue);
       text-decoration: underline;
     }
 
-    /* Animation utility */
-    .fade-in {
-      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    .divider {
+      margin: 0 8px;
+      color: #334155;
     }
 
+    /* Entry Animation */
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateY(10px);
       }
       to {
         opacity: 1;
@@ -168,29 +193,40 @@
 </head>
 <body>
 
-  <div class="auth-card fade-in">
-    <h2 class="auth-title" id="form-title">Create your account</h2>
+  <div class="auth-card">
+    <!-- Header -->
+    <div class="auth-header">
+      <h1 class="brand-title">Bigisub.ng</h1>
+      <p class="brand-subtitle">Log in to access your account</p>
+    </div>
 
-    <form id="auth-form" onsubmit="event.preventDefault();">
+    <!-- Login Form -->
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <!-- Username / Phone -->
       <div class="form-group">
-        <!-- Names grid (Hidden dynamically during Sign In) -->
-        <div class="grid-2" id="name-fields">
-          <div class="input-wrapper">
-            <input type="text" class="input-field" placeholder="First name" required />
-          </div>
-          <div class="input-wrapper">
-            <input type="text" class="input-field" placeholder="Last name" required />
-          </div>
-        </div>
-
-        <!-- Email -->
+        <label for="user-input" class="form-label">Username / Phone</label>
         <div class="input-wrapper">
-          <input type="email" class="input-field" placeholder="Email address" required />
+          <input 
+            type="text" 
+            id="user-input" 
+            class="form-input" 
+            placeholder="Enter username or phone number" 
+            required 
+          />
         </div>
+      </div>
 
-        <!-- Password -->
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password-input" class="form-label">Password</label>
         <div class="input-wrapper">
-          <input type="password" id="password-field" class="input-field" placeholder="Password" required />
+          <input 
+            type="password" 
+            id="password-input" 
+            class="form-input" 
+            placeholder="Enter password" 
+            required 
+          />
           <button type="button" class="toggle-password" id="toggle-pwd-btn" aria-label="Toggle password view">
             <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -198,58 +234,31 @@
             </svg>
           </button>
         </div>
-
-        <!-- Submit Button -->
-        <button type="submit" class="btn-submit" id="submit-btn">Create account</button>
       </div>
+
+      <!-- Submit CTA -->
+      <button type="submit" class="btn-submit">Log In</button>
     </form>
 
-    <!-- Switch Mode Link -->
-    <div class="auth-footer" id="auth-footer">
-      Already have an account? <span class="auth-link" id="switch-mode-btn">Sign in</span>
+    <!-- Links Footer -->
+    <div class="auth-footer">
+      <a href="#" class="auth-link">Forgot password?</a>
+      <span class="divider">|</span>
+      <a href="#" class="auth-link">Create account</a>
     </div>
   </div>
 
   <script>
-    // State Tracker
-    let isSignUp = true;
-
-    // Element References
-    const formTitle = document.getElementById('form-title');
-    const nameFields = document.getElementById('name-fields');
-    const submitBtn = document.getElementById('submit-btn');
-    const authFooter = document.getElementById('auth-footer');
-    const switchModeBtn = document.getElementById('switch-mode-btn');
-    const passwordField = document.getElementById('password-field');
+    // Password Toggle Functionality
+    const passwordInput = document.getElementById('password-input');
     const togglePwdBtn = document.getElementById('toggle-pwd-btn');
     const eyeIcon = document.getElementById('eye-icon');
 
-    // Dynamic View Switcher (Sign Up <-> Sign In)
-    switchModeBtn.addEventListener('click', () => {
-      isSignUp = !isSignUp;
-
-      if (isSignUp) {
-        formTitle.textContent = 'Create your account';
-        nameFields.style.display = 'grid';
-        submitBtn.textContent = 'Create account';
-        authFooter.innerHTML = 'Already have an account? <span class="auth-link" id="switch-mode-btn">Sign in</span>';
-      } else {
-        formTitle.textContent = 'Welcome back';
-        nameFields.style.display = 'none';
-        submitBtn.textContent = 'Sign in';
-        authFooter.innerHTML = 'Don\'t have an account? <span class="auth-link" id="switch-mode-btn">Sign up</span>';
-      }
-
-      // Re-bind click event to newly created link DOM node
-      document.getElementById('switch-mode-btn').addEventListener('click', arguments.callee);
-    });
-
-    // Toggle Password Visibility
     togglePwdBtn.addEventListener('click', () => {
-      const isPassword = passwordField.type === 'password';
-      passwordField.type = isPassword ? 'text' : 'password';
+      const isPassword = passwordInput.type === 'password';
+      passwordInput.type = isPassword ? 'text' : 'password';
 
-      // Switch SVG icon design dynamically
+      // Update Eye Icon Dynamic View
       if (isPassword) {
         eyeIcon.innerHTML = `
           <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
@@ -262,6 +271,14 @@
         `;
       }
     });
+
+    // Dummy Submit Handler
+    function handleLogin(event) {
+      event.preventDefault();
+      const username = document.getElementById('user-input').value;
+      alert(`Logging in user: ${username}`);
+    }
   </script>
+
 </body>
 </html>
